@@ -28,16 +28,39 @@
         <form action="/action_page.php" class="form-container">
           <h4>Login</h4>
           <br>
-          <label for="email"><b>Email</b></label>
+          <label for="email" class="email-label"><b>Email</b></label>
           <input type="text" placeholder="Enter Email" name="email" required>
           <br>
           <label for="psw"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="psw" required>
           <br>
-          <button type="submit" class="btn">Login</button>
-          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          <div class="button-container">
+            <button type="submit" class="btn">Login</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          </div>
         </form>
-      </div>
+    </div>
+    <div class="form-popup" id="signup">
+        <form action="/action_page.php" class="form-container">
+          <h4>Sign Up</h4>
+          <br>
+          <label for="email" class ="email-label"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" required>
+          <br>
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required>
+          <br>
+          <div class ="button-container">
+            <button type="submit" class="button">Sign Up</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          </div>
+        </form>
+    </div>
+    <div class="form-popup" id="about">Well fuck you<br>
+        <form action="/action_page.php" class="form-container">
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
     
 </body>
 <footer>

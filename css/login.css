@@ -66,29 +66,42 @@ footer{
   display: none;
 }
 .form-popup {
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   display: none;
   position:relative;
-  max-height: 50%;
-  max-width: 50%;
-  margin-left: 25%;
-  /*top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;*/
-  border: 3px solid #f1f1f1;
+  max-height: 30%;
+  max-width: 30%;
+  margin: 0 auto;
+  border: 3px solid #8d8585e9;
   background-color: black;
   color:antiquewhite;
-  z-index: 2;
+  background-image: url('./drawables/bg_drop.jpg');
+  background-size: cover;
+  border-radius: 20px;
 }
-.form-container {
-  max-width: 300px;
-  max-height: 300px;
-  padding: 10px;
+.form-popup h4{
+  font-family: 'Lucida Sans';
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: 0;
+}
+.form-popup input{
+  margin-left: 20px;
+}
+.email-label{
+  margin-right: 25px;
+}
+.button-container{
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+}
 
-}
 .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: #362020;
+  background-color: #ffffff;
   outline: none;
 }
 .btn .cancel{

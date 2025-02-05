@@ -5,9 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="css/login.css">
+    <script src="javascript/form_popout.js"></script>
 </head>
 <body>
-    <marquee behavior="scroll" direction="left" loop="1">Welcome to Project Manager version 1.0</marquee>
-
+    <marquee behavior="scroll" direction="left">Welcome to Project Manager
+    </marquee>
+    <div class="main-container"><h1>Project Manager</h1>
+        <span id = "subtitle"><h3>A web-based project to help you manage your stressful task with teammates</h3></span>
+    </div>
+    <div class="card-container" id ="card-container">
+        <div class="card">
+            <img src="css/drawables/login.png" alt="login" onclick="openFormL()">
+        </div>
+        <div class="card">
+            <img src="css/drawables/singup.png" alt="register" onclick="openFormR()">
+        </div>
+        <div class="card">
+            <img src="css/drawables/about.png" alt="forgot password" onclick="openAbout()">
+        </div>
+    </div>
+    <div class="form-popup" id="login">
+        <form action="/action_page.php" class="form-container">
+          <h4>Login</h4>
+          <br>
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" required>
+          <br>
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required>
+          <br>
+          <button type="submit" class="btn">Login</button>
+          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
+    
 </body>
+<footer>
+    <p>Designed by Hazziq, Lewis, Chun Zen and Si Thu.</p>
+</footer>
 </html>

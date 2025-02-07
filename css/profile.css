@@ -1,0 +1,110 @@
+*{  font-family: 'DejaVu Sans Mono, monospace';}
+body{
+    margin: 0;
+    padding: 0;
+  }
+li {
+    display: inline;
+    overflow: auto;
+}
+
+h2{
+    display: inline;
+    margin-left: 5px;
+    font-size:x-large;
+}
+h3{
+    display: inline;
+    margin-left: 25px;
+    font-size: larger;
+}
+header {
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    text-align: center;
+    height: 50px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  }
+
+#logout{
+    margin-left:975px;
+    display: inline;
+    background-color:#4ca772;
+    color:white;
+    border-radius: 25px;
+    border: 0;
+    text-align: center;
+    height: 30px;
+    width: 75px;
+} 
+#logout_btn, .new_btn{
+    background-color:#4ca772;
+    color:white;
+    border-radius: 25px;
+    border: 0;
+    text-align: center;
+    height: 30px;
+    width: 75px;
+}
+
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: blue;
+    transition: width 0.5s ease-out;
+    z-index: 9999;
+  }
+
+#create-project , #invited-project{
+    border-top: solid 1px #000;
+    border-bottom: solid 1px #000;
+    margin-top:5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: auto;
+}
+#new_project{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    border: solid 2px #000;
+    width: 300px;
+    height: 120px; 
+    z-index:10;
+    top: 37%; 
+    left: 40%; 
+    border-radius: 65px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+}
+
+#add{
+    margin-left:1125px;
+    display: inline;
+    background-color:#4ca772;
+    color:white;
+    border-radius: 15px;
+    border: 0;
+    text-align: center;
+    height: 25px;
+    width: 40px;
+}
+.title{
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.button_group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adds space between the buttons */
+    margin-top: 10px; /* Optional: adds some space above the buttons */
+}

@@ -1,5 +1,5 @@
 .popup {
-    background-color: #4ca772;
+    background-color: #10331f;
     padding: 20px;
     border-radius: 5px;
     width:40%;
@@ -8,7 +8,9 @@
     display: block;
     margin:10px;
     z-index: 3;
-    
+    color:antiquewhite;
+    border-radius: 20px;
+    border: 3px solid white;
   }
 
 #popup_overlay {
@@ -61,8 +63,10 @@ input,label{
     margin-top:5px;
 }
 h2{
-    margin: 0px 120px 30px 0px;
-    display: inline;
+    margin:0;
+    margin-bottom:30px;
+    text-align: center;
+    align-items: center;
 }
 .out_btn{
     background-color:#4ca772;
@@ -84,11 +88,16 @@ h2{
     position:fixed;
     bottom: 23%;
 }
-#bottom:hover{
-    background-color: red;
+.icon:hover{
+    transform: translateY(-5px);
 }
 .icon{
     max-height: 30px;
     max-width: 30px;
     margin-top: 20px;
+    transition-duration: 4s;
+    transition-timing-function: ease;
+}
+input{
+    margin-left: 20px;
 }

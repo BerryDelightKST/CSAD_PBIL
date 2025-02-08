@@ -125,7 +125,42 @@ textarea {
     max-height: 20px;
     max-width: 20px;
 }
-
+#bin_ic,.bin{
+    max-height: 40px;
+    max-width: 50px;
+    background-color: transparent;
+    margin:0;
+    outline: none;
+    border:none;
+    transition-duration: 2s;
+    transition-timing-function: ease;
+}
+.bin:hover{
+    content: url('drawables/bin_open.png');
+    max-height: 40px;
+    max-width: 50px;
+}
+#bin_smol_ic{
+    background-color: transparent;
+    margin:0;
+    outline: none;
+    border:none;
+}
+.bin_smol{
+    max-height: 20px;
+    max-width: 30px;
+    background-color: transparent;
+    margin:-4px;
+    outline: none;
+    border:none;
+    transition-duration: 2s;
+    transition-timing-function: ease;
+}
+.bin_smol:hover{
+    content: url('drawables/bin_open.png');
+    max-height: 20px;
+    max-width: 30px;
+}
 .new_btn,.del_btn{
     background-color:#4ca772;
     padding: 5px;
@@ -141,7 +176,22 @@ textarea {
     cursor: pointer;
     text-decoration: none;
 }
-.new_btn:hover{
+.new_btn:hover,.new_btn_xl:hover{
     transform: translateY(-5px);
     background-color: #4ca772;
+}
+.new_btn_xl{
+    background-color:#4ca772;
+    padding: 5px;
+    color:white;
+    margin-right: 10px;
+    border-radius: 25px;
+    border: 0;
+    text-align: center;
+    height: 40px;
+    width: 100px;
+    transition-duration: 3s;
+    transition-timing-function: ease;
+    cursor: pointer;
+    text-decoration: none;
 }

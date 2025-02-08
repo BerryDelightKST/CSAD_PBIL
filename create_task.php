@@ -55,6 +55,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_task'])) {
         echo "Invalid progress value. It should be between 0 and 100.";
     }
 }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['assign_user'])) {
+    if ($task_id) { // Ensure a task has been created before assigning users
+        try {
+            // Assign selected user to the task with specified role
+            $assigned_user_id = $_POST['user_id'];
+            $role = $_POST['role'];
+
+            // Check if already assigned to prevent duplicates
+            $stmt = $pdo->prepare("SELECT * FROM task_assignments WHERE task_id = ? AND user_id = ?");
+            $stmt->execute([$task_id, $assigned_user_id]);
+
+            if ($stmt->rowCount() === 0) {
+                // Insert new assignment record
+                $stmt = $pdo->prepare("INSERT INTO task_assignments (task_id, user_id, role) VALUES (?, ?, ?)");
+                $stmt->execute([$task_id, $assigned_user_id, $role]);
+
+                echo "User assigned successfully.";
+            } else {
+                echo "User is already assigned to this task.";
+            }
+        } catch (PDOException $e) {
+            echo "Error assigning user: " . htmlspecialchars($e->getMessage());
+        }
+    } else {
+        echo "Task must be created before assigning users.";
+    }
+}
 
 // Fetch available users
 $stmt = $pdo->prepare("SELECT u.id, u.email 
@@ -76,13 +103,14 @@ $project = $stmt->fetch();
 <head>
     <meta charset="UTF-8">
     <title>Create Task</title>
-    <link href="./css/create_task.css" rel="stylesheet">
+    <link href="./css/create_task2.css" rel="stylesheet">
+    <script src="javascript/task.js"></script>
 </head>
 <body>
     <div id="popup_overlay">
         <div class ="popup">
             <h2>Create a New Task for Project: <?php echo htmlspecialchars($project['name']); ?></h2>
-            <form method="POST">
+            <form method="POST" onsubmit="return validateDates()">
                 <label for="task_name">Task Name:</label>
                 <input type="text" name="task_name" required><br>
 
@@ -118,7 +146,8 @@ $project = $stmt->fetch();
                         <option value="viewer">Viewer</option>
                     </select>
 
-                    <button type="submit" name="assign_user">Assign</button>
+                    <button type="submit" name="assign_user" onclick="feedback()">Assign</button>
+                    <p id="feedback"></p>
                 </form>
             <?php endif; ?>
             <div id = "bottom">

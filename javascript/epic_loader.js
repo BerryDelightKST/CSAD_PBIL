@@ -21,3 +21,4 @@ function openAdd(){
 function closeForm(){
     document.getElementById("new_project").style.display = "none";
 }
+

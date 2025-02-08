@@ -182,7 +182,7 @@ foreach ($tasks as $task) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Tasks</title>
-    <link href="css/task_manage.css" rel="stylesheet">
+    <link href="css/task-manage.css" rel="stylesheet">
     <script src="javascript/task_form.js"></script>
 </head>
 <body>
@@ -226,7 +226,7 @@ foreach ($tasks as $task) {
                             <p><?php echo nl2br(htmlspecialchars($task['description'])); ?></p>
                             <div class="task-actions">
                             <?php if ($user_role === 'owner' && isset($task['id'])): ?>
-                            <a href="assign_users_to_task.php?task_id=<?php echo $task['id']; ?>&project_id=<?php echo $project_id; ?>" class="btn">Manage Assignments</a>
+                            <a href="assign_users_to_task.php?task_id=<?php echo $task['id']; ?>&project_id=<?php echo $project_id; ?>" class="new_btn_xl">Manage Assignments</a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -272,7 +272,7 @@ foreach ($tasks as $task) {
                                     <input type="date" name="end_date" value="<?php echo $task['end_date']; ?>" required><br>
                                     <label for="description">Description:</label><br>
                                     <textarea name="description" required><?php echo htmlspecialchars($task['description']); ?></textarea><br>
-                                    <button type="submit" name="update_progress">Update Progress</button>
+                                    <button type="submit" name="update_progress" class="new_btn">Update</button>
                                 </form>
                             <?php
                             elseif ($task_assignment_role === 'editor'): // Corrected else if condition
@@ -304,6 +304,7 @@ foreach ($tasks as $task) {
                                 echo "<ul>";
                                 foreach ($subtasks as $subtask) {
                                     echo "<li>";
+                                    echo "<div class='subtask-actions'>";
                                     if ($user_role === 'owner' || $task_assignment_role === 'editor') {
                                         echo "<form method='POST' style='display:inline;'>";
                                         echo htmlspecialchars($subtask['name']);
@@ -314,10 +315,11 @@ foreach ($tasks as $task) {
                                         echo htmlspecialchars($subtask['name']);
                                     }
                                     if ($user_role === 'owner' || $task_assignment_role === 'editor') {
-                                        echo "<div class='subtask-actions'>";
+                                       
                                         echo "<form method='POST' style='display:inline;'>";
                                         echo "<input type='hidden' name='subtask_id' value='" . $subtask['id'] . "'>";
-                                        echo "<button type='submit' name='delete_subtask' onclick='return confirm(\"Are you sure you want to delete this subtask?\")'>Delete</button>";
+                                        echo "<button type='submit' name='delete_subtask' id='bin_smol_ic' onclick='return confirm(\"Are you sure you want to delete this subtask?\")'>
+                                        <img class='bin_smol' src='./css/drawables/bin_closed.png'></button>";
                                         echo "</form>";
                                         echo "</div>";
                                     }
@@ -333,7 +335,7 @@ foreach ($tasks as $task) {
                                         <label for="subtask_name">Add Subtask</label>
                                         <input type="text" name="subtask_name" placeholder="Subtask Name" required>
                                     </div>
-                                    <button type="submit" name="add_subtask">Add</button>
+                                    <button type="submit" name="add_subtask" class = "new_btn" >Add</button>
                                 </form>
                             <?php endif; ?>
                         </div>
@@ -343,7 +345,8 @@ foreach ($tasks as $task) {
                     <?php if ($user_role === 'owner'): ?>
                         <form method="POST" style="display:inline;">
                             <input type="hidden" name="task_id" value="<?php echo $task['id']; ?>">
-                            <button type="submit" name="delete_task" onclick="return confirm('Are you sure you want to delete this task?')">Delete Task</button>
+                            <button id="bin_ic" type="submit" name="delete_task" onclick="return confirm('Are you sure you want to delete this task?')">
+                                <img class = "bin" src="./css/drawables/bin_closed.png"></button>
                         </form>
                     <?php endif; ?>
 

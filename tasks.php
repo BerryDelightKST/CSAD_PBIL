@@ -182,125 +182,8 @@ foreach ($tasks as $task) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Tasks</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 15px 0;
-            text-align: center;
-        }
-
-        h2, h3, h4 {
-            color: #333;
-        }
-
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-        .task-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            background-color: #f9f9f9;
-        }
-
-        .task-details {
-            width: 45%;
-        }
-
-        .task-assignment, .task-update {
-            width: 20%;
-        }
-        .task-actions {
-          display: flex;
-            justify-content: flex-start; /* Aligns the button to the left */
-            margin-top: 10px;
-        }
-
-
-        .subtasks {
-            margin-top: 20px;
-            padding-left: 20px;
-        }
-
-        .subtask-item {
-            margin-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        input[type="text"], input[type="date"], input[type="number"], textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        textarea {
-            resize: vertical;
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: flex-start;
-            gap: 10px;
-        }
-
-        .form-actions button {
-            background-color: #28a745;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .form-actions button:hover {
-            background-color: #218838;
-        }
-
-        .subtask-actions button {
-            background-color: #dc3545;
-        }
-
-        .subtask-actions button:hover {
-            background-color: #c82333;
-        }
-    </style>
+    <link href="css/task_manage.css" rel="stylesheet">
+    <script src="javascript/task_form.js"></script>
 </head>
 <body>
 
@@ -315,23 +198,20 @@ foreach ($tasks as $task) {
                 <li>
                     <strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?>
                     <?php if ($user['role'] === 'owner'): ?>
-                        - <em>Role: Owner</em>
+                        <img src='./css/drawables/owner.png' class="icon">
                     <?php endif; ?>
                 </li>
             <?php endforeach; ?>
         </ul>
 
-        <a href="gantt_chart.php?project_id=<?php echo $project_id; ?>" class="btn">Generate Gantt Chart</a>
+        <a href="gantt_chart.php?project_id=<?php echo $project_id; ?>" class="new_btn">Generate Gantt Chart</a>
 
         <!-- Only show "Create Task" button to the owner -->
         <?php if ($user_role === 'owner'): ?>
-            <a href="create_task.php?project_id=<?php echo $project_id; ?>" class="btn">Create Task</a>
+            <a href="create_task.php?project_id=<?php echo $project_id; ?>" class="new_btn">Create Task</a>
         <?php else: ?>
             <p>You do not have permission to create tasks or manage assignments.</p>
-        <?php endif; ?>
-
-        <hr>
-
+        <?php endif; ?>         
         <h3>Tasks</h3>
         <ul>
             <?php foreach ($tasks as $task): ?>
@@ -349,9 +229,7 @@ foreach ($tasks as $task) {
                             <a href="assign_users_to_task.php?task_id=<?php echo $task['id']; ?>&project_id=<?php echo $project_id; ?>" class="btn">Manage Assignments</a>
                             <?php endif; ?>
                         </div>
-                        </div>
-
-
+                    </div>
                         <div class="task-assignment">
                             <h4>Assigned Editors</h4>
                             <?php
@@ -374,7 +252,6 @@ foreach ($tasks as $task) {
                             }
                             ?>
                         </div>
-
                         <div class="task-update">
                             <?php
                             // Check if the user has an "editor" role in the task_assignments table
@@ -406,7 +283,7 @@ foreach ($tasks as $task) {
                                 <input type="number" name="progress" min="0" max="100" value="<?php echo $task['progress']; ?>" required><br>
                                 <label for="description">Description:</label><br>
                                 <textarea name="description" required><?php echo htmlspecialchars($task['description']); ?></textarea><br>
-                                <button type="submit" name="update_progress">Update Progress</button>
+                                <button class="new_btn"type="submit" name="update_progress">Update Progress</button>
 
                                 </form>
                                 <?php endif;?>
@@ -476,7 +353,7 @@ foreach ($tasks as $task) {
     </div>
 
     <div class="container">
-        <a href="profile.php" class="btn">Back to Profile</a>
+        <a href="profile.php" class="leave_btn">Back to Profile</a>
     </div>
 </body>
 </html>

@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['leave_project'])) {
 
     if ($user_role === 'owner') {
         // If user is the owner, prevent them from leaving the project
-        echo "You cannot leave your own project.";
+        echo "<p>You cannot leave your own project.</p>";
         exit;
     }
 
@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['invite_user'])) {
             }
         }
     } else {
-        echo "No user found with that email.";
+        echo "<script>alert('No user found with that email.)'</script>";
     }
 }
 
@@ -158,12 +158,12 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Profile</title>
     <script src="javascript/epic_loader.js"></script>
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/profile2.css">
 </head>
 <body>
     <header>
          <ul>
-            <li><h2>Welcome to Streamline, <?php echo htmlspecialchars($user_id); ?>!</h2></li>
+            <li><h2 id="splash">Welcome to Streamline, <?php echo htmlspecialchars($user_id); ?>!</h2></li>
             <li>
                 <form id ="logout" method="POST" action="profile.php">
                     <button id="logout_btn" type="submit" name="logout">Logout</button>
@@ -177,38 +177,39 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <button type = "button" id ="add" class="create-btn" onclick="openAdd()">&plus;</button>
     </div>
     <div id= "new_project">
+        <div id = "project_pop">
         <form method="POST">
             <input type="text" name="project_name" required placeholder="Project Name">
         <div class ="button_group">
             <button type="submit" class ="new_btn" formaction="create_project.php">Create</button>
-            <button type="button" class ="new_btn" onclick="closeForm()">Close</button>
+            <button class="del_btn" type="button" onclick="closeForm()">Close</button>
         </div>   
         </form>
+        </div>
     </div>
     <div id="create-project">
     <ul>
         <?php foreach ($projects as $project): ?>
             <li>
                 <?php echo htmlspecialchars($project['name']); ?>
-                <form method="POST" style="display:inline;">
-                    <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
-                    <button type="submit" name="delete_project" onclick="return confirm('Are you sure you want to delete this project?')">Delete Project</button>
-                </form>
-                <form method="POST" style="display:inline;">
-                    <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
-                    <button type="button" disabled>Cannot Leave Your Own Project</button>
-                </form>
-
                 <a href="tasks.php?project_id=<?php echo $project['id']; ?>">
-                    <button>View Tasks</button>
+                    <button class="new_btn">View Tasks</button>
                 </a>
-
                 <!-- Invite user form -->
                 <form method="POST" style="display:inline;">
                     <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
                     <input type="email" name="invite_email" placeholder="Invite by email" required>
-                    <button type="submit" name="invite_user">Invite User</button>
+                    <button class=" new_btn" type="submit" name="invite_user">Invite User</button>
                 </form>
+
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
+                    <button class="del_btn" type="submit" name="delete_project" onclick="return confirm('Are you sure you want to delete this project?')">Delete</button>
+                </form>
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
+                    <button class="leave_btn" type="button" disabled>Cannot Leave Your Own Project</button>
+                </form>  
             </li>
         <?php endforeach; ?>
     </ul>
@@ -221,11 +222,11 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php echo htmlspecialchars($project['name']); ?>
                 <form method="POST" style="display:inline;">
                     <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
-                    <button type="submit" name="leave_project"onclick="return confirm('Are you sure you want to leave this project?')">Leave Project</button>
+                    <button class="del_btn" type="submit" name="leave_project"onclick="return confirm('Are you sure you want to leave this project?')">Leave Project</button>
                 </form>
 
                 <a href="tasks.php?project_id=<?php echo $project['id']; ?>">
-                    <button>View Tasks</button>
+                    <button class="new_btn">View Tasks</button>
                 </a>
             </li>
         <?php endforeach; ?>
@@ -246,4 +247,7 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
 </body>
+<footer>
+    <p>Designed by Hazziq, Lewis, Chun Zen and Si Thu.</p>
+</footer>
 </html>

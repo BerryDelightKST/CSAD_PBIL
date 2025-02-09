@@ -99,7 +99,7 @@ $stmt = $pdo->prepare("SELECT name FROM projects WHERE id = ?");
 $stmt->execute([$project_id]);
 $project = $stmt->fetch();
 ?>
-<!--The entire html and inline php statement has been created by Si Thu before and edited during UI implementation-->
+<!--The entire html and inline php statement has been created by Si Thu and ChunZen before edited by Si Thu during UI implementation-->
 <!DOCTYPE html>
 <html lang="en">
 <head>

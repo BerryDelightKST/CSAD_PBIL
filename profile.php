@@ -156,6 +156,10 @@ $stmt = $pdo->prepare("SELECT projects.*, project_members.role FROM projects
                         WHERE project_members.user_id = ? AND project_members.role != 'owner'");
 $stmt->execute([$user_id]);
 $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//fetch user's email
+$stmt = $pdo->prepare("SELECT email FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user_email = $stmt->fetchColumn();
 ?>
 
 <!DOCTYPE html>
@@ -164,12 +168,12 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Profile</title>
     <script src="javascript/epic_loader.js"></script>
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/profile_test.css">
 </head>
 <body>
     <header>
          <ul>
-            <li><h2 id="splash">Welcome to Streamline<!--,<?php echo htmlspecialchars($user_id); ?>-->!</h2></li>
+            <li><h2 id="splash">Welcome to Streamline,<?php echo htmlspecialchars($user_email); ?>!</h2></li>
             <li>
                 <form id ="logout" method="POST" action="profile.php">
                     <button id="logout_btn" type="submit" name="logout">Logout</button>

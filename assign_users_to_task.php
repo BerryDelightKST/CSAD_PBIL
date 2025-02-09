@@ -15,7 +15,14 @@ if (!isset($_GET['task_id']) || !isset($_GET['project_id']) || !is_numeric($_GET
 $task_id = $_GET['task_id'];
 $project_id = $_GET['project_id'];
 $user_id = $_SESSION['user_id'];
-
+// Fetch the task name(NEW)
+$stmt = $pdo->prepare("SELECT name FROM tasks WHERE id = ?");
+$stmt->execute([$task_id]);
+$task_name = $stmt->fetchColumn();
+/*// Fetch the current user's email
+$stmt = $pdo->prepare("SELECT email FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user_email = $stmt->fetchColumn();*/
 try {
     // Fetch project name
     $stmt = $pdo->prepare("SELECT name FROM projects WHERE id = ?");
@@ -105,7 +112,7 @@ try {
 <body>
     <div id="popup_overlay">
         <div class="popup">
-        <h2>Assign Users to Task <!--: <?php echo htmlspecialchars($task_id); ?> -->for Project: <?php echo htmlspecialchars($project_name); ?></h2>
+        <h2>Assign Users to Task: <?php echo htmlspecialchars($task_name); ?> ,for Project: <?php echo htmlspecialchars($project_name); ?></h2>
 
     <h3>Available Users:</h3>
     <form method="POST">

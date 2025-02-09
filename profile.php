@@ -231,10 +231,11 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <button class="new_btn">View Tasks</button>
                 </a>
             </li>
+            <br><br>
         <?php endforeach; ?>
     </ul>
+
     </div>
-    <br><br>
     
     <?php
     if (isset($_POST['logout'])) {

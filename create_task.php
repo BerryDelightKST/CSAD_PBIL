@@ -1,4 +1,6 @@
 <?php
+//For this file's php, the entire php statements until before the html was created by Haaziq and edited by Si Thu during UI implementation.
+
 session_start();
 require 'config.php';
 
@@ -97,7 +99,7 @@ $stmt = $pdo->prepare("SELECT name FROM projects WHERE id = ?");
 $stmt->execute([$project_id]);
 $project = $stmt->fetch();
 ?>
-
+<!--The entire html and inline php statement has been created by Si Thu before and edited during UI implementation-->
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,5 @@
 <?php
+//For this file's php, the entire php statements was created by Haaziq and edited by Si Thu during UI implementation.
 session_start();
 require 'config.php';
 

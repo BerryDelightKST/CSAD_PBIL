@@ -1,4 +1,6 @@
 <?php
+//For this file's php, the entire php statements until before the html was created by Lewis and Haaziq, later edited by Si Thu during UI implementation.
+
 session_start();
 require 'config.php';
 
@@ -175,6 +177,7 @@ foreach ($tasks as $task) {
 
 ?>
 
+<!--The entire html and inline php statement has been created by Si Thu and Lewis and edited by Si Thu during UI implementation-->
 
 <!DOCTYPE html>
 <html lang="en">

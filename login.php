@@ -1,4 +1,5 @@
 <?php
+//For this file's php, the entire php statements until before the html was created by Haaziq and edited by Si Thu during UI implementation.
 session_start();
 require 'config.php';  // Include database connection
 
@@ -51,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['signup_email'], $_POST
     exit;}
 }
 ?>
-?>
+<!--The entire html and inline php statement has been created by ChunZen before and edited by Si Thu during UI implementation-->
 <!DOCTYPE html>
 <html lang="en">
 <head>

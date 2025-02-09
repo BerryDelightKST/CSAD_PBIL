@@ -1,4 +1,5 @@
 <?php
+//For this file's php, the entire php statements until before the html was created by Haaziq and edited by Si Thu during UI implementation.
 session_start();
 require 'config.php';
 
@@ -101,10 +102,11 @@ try {
     exit;
 }
 ?>
-
+<!--The entire html and inline php statement has been created by ChunZen and edited by Si Thu during UI implementation-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <title>Assign Users to Task</title>
     <link rel="stylesheet" href="./css/management.css">

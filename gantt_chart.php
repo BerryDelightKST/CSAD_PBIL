@@ -1,4 +1,5 @@
 <?php
+//For this file's php, the entire php statements until before the html was created by Lewis and edited by Si Thu during UI implementation.
 session_start();
 require 'config.php';
 
@@ -32,7 +33,8 @@ $stmt = $pdo->prepare("SELECT * FROM tasks WHERE project_id = ?");
 $stmt->execute([$project_id]);
 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<!--The entire html and inline php statement has been created by Si Thu before and edited during UI implementation-->
+<!--The ability of being able to create the gantt chart was implemented by Lewis while Si Thu made the chart, downloadable as png-->
 <!DOCTYPE html>
 <html lang="en">
 <head>

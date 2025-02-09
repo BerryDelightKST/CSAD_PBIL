@@ -1,14 +1,14 @@
 <?php
 session_start();
 require 'config.php';
-//Process logout header first to prevent error later on
+
 if (isset($_POST['logout'])) {
-    session_unset();
-    session_destroy();
-    header("Location: login.php");
-    exit;
-}
-    
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;

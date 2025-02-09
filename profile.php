@@ -50,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_project'])) {
 
 
 
-
 // Handle leaving the project
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['leave_project'])) {
     $project_id = $_POST['project_id'];
@@ -158,7 +157,7 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Profile</title>
     <script src="javascript/epic_loader.js"></script>
-    <link rel="stylesheet" href="css/profile2.css">
+    <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
     <header>
@@ -211,18 +210,21 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <button class="leave_btn" type="button" disabled>Cannot Leave Your Own Project</button>
                 </form>  
             </li>
+            <br><br>
         <?php endforeach; ?>
     </ul>
     </div>
-    <div id="invited-projects"> 
-    <h3>Projects You Are Invited To</h3>
+    <div class = "title">     
+    <h3>Projects You Are Invited To</h3><br>
+    </div>
+    <div id="invited-projects">
     <ul>
         <?php foreach ($invited_projects as $project): ?>
             <li>
                 <?php echo htmlspecialchars($project['name']); ?>
                 <form method="POST" style="display:inline;">
                     <input type="hidden" name="project_id" value="<?php echo $project['id']; ?>">
-                    <button class="del_btn" type="submit" name="leave_project"onclick="return confirm('Are you sure you want to leave this project?')">Leave Project</button>
+                    <button class="del_btn" type="submit" name="leave_project"onclick="return confirm('Are you sure you want to leave this project?')">Leave</button>
                 </form>
 
                 <a href="tasks.php?project_id=<?php echo $project['id']; ?>">
@@ -232,12 +234,8 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
     </ul>
     </div>
-    <br>
-    
-
     <br><br>
     
-
     <?php
     if (isset($_POST['logout'])) {
         session_unset();

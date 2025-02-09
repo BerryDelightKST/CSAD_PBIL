@@ -103,7 +103,7 @@ $project = $stmt->fetch();
 <head>
     <meta charset="UTF-8">
     <title>Create Task</title>
-    <link href="./css/create_task2.css" rel="stylesheet">
+    <link href="./css/create_task.css" rel="stylesheet">
     <script src="javascript/task.js"></script>
 </head>
 <body>

@@ -214,15 +214,10 @@ foreach ($tasks as $task) {
         <?php endif; ?>         
         <h3>Tasks</h3>
         <ul>
-        <?php foreach ($tasks as $task): ?>
-                <?php
-                $current_date = date('Y-m-d');
-                $is_due_class = ($task['end_date'] <= $current_date) ? "due-task" : "";
-                ?>
+            <?php foreach ($tasks as $task): ?>
                 <li>
-                    
-                    <div class="task-container <?php echo $is_due_class; ?>">
-                    <div class="task-details">
+                    <div class="task-container">
+                        <div class="task-details">
                             <h4><?php echo htmlspecialchars($task['name']); ?></h4>
                             <p><strong>Progress:</strong> <?php echo $task['progress']; ?>%</p>
                             <p><strong>Start Date:</strong> <?php echo $task['start_date']; ?></p>
@@ -231,10 +226,10 @@ foreach ($tasks as $task) {
                             <p><?php echo nl2br(htmlspecialchars($task['description'])); ?></p>
                             <div class="task-actions">
                             <?php if ($user_role === 'owner' && isset($task['id'])): ?>
-                                <a href="assign_users_to_task.php?task_id=<?php echo $task['id']; ?>&project_id=<?php echo $project_id; ?>" class="new_btn_xl">Manage Assignments</a>
+                            <a href="assign_users_to_task.php?task_id=<?php echo $task['id']; ?>&project_id=<?php echo $project_id; ?>" class="new_btn_xl">Manage Assignments</a>
                             <?php endif; ?>
                         </div>
-                        </div>
+                    </div>
                         <div class="task-assignment">
                             <h4>Assigned Editors</h4>
                             <?php
@@ -288,7 +283,7 @@ foreach ($tasks as $task) {
                                 <input type="number" name="progress" min="0" max="100" value="<?php echo $task['progress']; ?>" required><br>
                                 <label for="description">Description:</label><br>
                                 <textarea name="description" required><?php echo htmlspecialchars($task['description']); ?></textarea><br>
-                                <button class="new_btn"type="submit" name="update_progress">Update</button>
+                                <button class="new_btn"type="submit" name="update_progress">Update Progress</button>
 
                                 </form>
                                 <?php endif;?>

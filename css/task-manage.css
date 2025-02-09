@@ -48,7 +48,12 @@ header {
     background-color: #000000;
     margin-right: 10px;
 }
-
+.due-task {
+    background-color: #8b0000;
+    color: white;
+    animation: alert 5s infinite;
+    border:5px;
+}
 .task-details {
     width: 40%;
     word-wrap: break-word;
@@ -194,4 +199,12 @@ textarea {
     transition-timing-function: ease;
     cursor: pointer;
     text-decoration: none;
+}
+@keyframes alert {
+    0%{border: 5px solid rgb(184, 16, 136);
+        box-shadow: rgb(163, 18, 207);}
+    50%{border: 5px solid rgb(139, 139, 0);
+        box-shadow: rgb(139, 139, 0);}
+    100%{border: 5px solid rgb(0, 39, 139);
+        box-shadow: rgb(0, 39, 139);}
 }

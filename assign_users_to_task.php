@@ -100,9 +100,12 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Assign Users to Task</title>
+    <link rel="stylesheet" href="./css/management.css">
 </head>
 <body>
-    <h2>Assign Users to Task: <?php echo htmlspecialchars($task_id); ?> for Project: <?php echo htmlspecialchars($project_name); ?></h2>
+    <div id="popup_overlay">
+        <div class="popup">
+        <h2>Assign Users to Task: <?php echo htmlspecialchars($task_id); ?> for Project: <?php echo htmlspecialchars($project_name); ?></h2>
 
     <h3>Available Users:</h3>
     <form method="POST">
@@ -120,7 +123,7 @@ try {
             <option value="viewer">Viewer</option>
         </select><br>
 
-        <button type="submit" name="assign_user">Assign User</button>
+        <button type="submit" name="assign_user">Assign</button>
     </form>
 
     <h3>Current Assignments:</h3>
@@ -140,13 +143,16 @@ try {
                         <option value="editor" <?php echo ($assignment['role'] == 'editor') ? 'selected' : ''; ?>>Editor</option>
                         <option value="viewer" <?php echo ($assignment['role'] == 'viewer') ? 'selected' : ''; ?>>Viewer</option>
                     </select>
-                    <button type="submit" name="assign_user">Update Role</button>
+                    <button type="submit" name="assign_user">Update</button>
                 </form>
             </li>
         <?php endforeach; ?>
     </ul>
-
-    <br><br>
-    <a href="tasks.php?project_id=<?php echo $project_id; ?>">Back to Tasks</a>
+        <div id = "bottom">
+        <a href="tasks.php?project_id=<?php echo $project_id; ?>">
+            <img src ="./css/drawables/back.png" class="icon">
+        </a>
+        </div>
+    </div>
 </body>
 </html>

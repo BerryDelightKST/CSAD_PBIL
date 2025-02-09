@@ -91,7 +91,7 @@ header {
     z-index: 9999;
   }
 
-#create-project , #invited-project{
+#create-project , #invited-projects{
     margin-top: 15px;
     margin-bottom: 15px;
     border-top: solid 1px #000;
@@ -102,7 +102,7 @@ header {
     height: auto;
     padding: 10px;
 }  
-#create-project > ul{
+#create-project > ul, #invited-projects > ul{
     margin-left: 15px;
     margin-right:20px;
 }

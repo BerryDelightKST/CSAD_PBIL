@@ -1,6 +1,13 @@
 <?php
 session_start();
 require 'config.php';
+//logout the user
+if (isset($_POST['logout'])) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
 // Check if the user is already logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');

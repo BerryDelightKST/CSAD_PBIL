@@ -152,7 +152,6 @@ $stmt = $pdo->prepare("SELECT u.email, pm.role FROM project_members pm JOIN user
 $stmt->execute([$project_id]);
 $project_users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Fetch subtasks for the current task
-// Fetch subtasks for the current task
 $stmt = $pdo->prepare("SELECT * FROM tasks WHERE project_id = ?");
 $stmt->execute([$project_id]);
 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);

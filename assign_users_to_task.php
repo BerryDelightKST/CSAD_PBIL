@@ -105,7 +105,7 @@ try {
 <body>
     <div id="popup_overlay">
         <div class="popup">
-        <h2>Assign Users to Task: <?php echo htmlspecialchars($task_id); ?> for Project: <?php echo htmlspecialchars($project_name); ?></h2>
+        <h2>Assign Users to Task <!--: <?php echo htmlspecialchars($task_id); ?> -->for Project: <?php echo htmlspecialchars($project_name); ?></h2>
 
     <h3>Available Users:</h3>
     <form method="POST">

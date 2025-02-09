@@ -1,7 +1,14 @@
 <?php
 session_start();
 require 'config.php';
-
+//Process logout header first to prevent error later on
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+    
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
@@ -131,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['invite_user'])) {
             }
         }
     } else {
-        echo "<script>alert('No user found with that email.)'</script>";
+        echo "<script>alert('No user found with that email.')</script>";
     }
 }
 
@@ -162,7 +169,7 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <header>
          <ul>
-            <li><h2 id="splash">Welcome to Streamline, <?php echo htmlspecialchars($user_id); ?>!</h2></li>
+            <li><h2 id="splash">Welcome to Streamline<!--,<?php echo htmlspecialchars($user_id); ?>-->!</h2></li>
             <li>
                 <form id ="logout" method="POST" action="profile.php">
                     <button id="logout_btn" type="submit" name="logout">Logout</button>
@@ -237,14 +244,7 @@ $invited_projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     </div>
     
-    <?php
-    if (isset($_POST['logout'])) {
-        session_unset();
-        session_destroy();
-        header("Location: login.php");
-        exit;
-    }
-    ?>
+    
 </body>
 <footer>
     <p>Designed by Hazziq, Lewis, Chun Zen and Si Thu.</p>

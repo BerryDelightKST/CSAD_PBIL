@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'config.php';
-
+// Check if the user is already logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
@@ -12,12 +12,12 @@ $user_id = $_SESSION['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_project'])) {
     $project_id = $_POST['project_id'];
-
+//deleting project
     try {
-        // Begin transaction to ensure all deletions are successful
+        // Begin transaction
         $pdo->beginTransaction();
 
-        // Step 1: Delete task assignments associated with the project
+        // Step 1: Delete task assigned to members associated with the project
         $stmt = $pdo->prepare("DELETE FROM task_assignments WHERE task_id IN (SELECT id FROM tasks WHERE project_id = ?)");
         $stmt->execute([$project_id]);
 
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_project'])) {
 
 
 
-// Handle leaving the project
+// Handle leaving from other people's project
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['leave_project'])) {
     $project_id = $_POST['project_id'];
 
@@ -102,20 +102,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['invite_user'])) {
             echo "This user is already a member of the project.";
         } else {
             try {
-                // Begin a transaction to ensure both inserts succeed
+                // Begin a transaction
                 $pdo->beginTransaction();
 
-                // Insert the invited user into the project_members table with the role of 'viewer'
+                // Add the invited user into the project_members table with the role of 'viewer'
                 $stmt = $pdo->prepare("INSERT INTO project_members (project_id, user_id, role) VALUES (?, ?, 'viewer')");
                 $stmt->execute([$project_id, $user_to_invite['id']]);
 
-                // Insert the invited user into the task_assignments table as a 'viewer' for each task in the project
+                // Add the invited user into the task_assignments table as a 'viewer' for each task in the project
                 $stmt = $pdo->prepare("SELECT id FROM tasks WHERE project_id = ?");
                 $stmt->execute([$project_id]);
                 $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 foreach ($tasks as $task) {
-                    // Assign the user as a viewer to each task
+                    // Assigning the member as a viewer to each task
                     $stmt = $pdo->prepare("INSERT INTO task_assignments (task_id, user_id, role) VALUES (?, ?, 'viewer')");
                     $stmt->execute([$task['id'], $user_to_invite['id']]);
                 }
